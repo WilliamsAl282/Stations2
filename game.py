@@ -25,8 +25,8 @@ def handle_events():
     return True
 
 
-def draw_circle(screen,color,cp_x, cp_y,radius,thickness):
-    pygame.draw.circle(screen,color,cp_x, cp_y,radius,thickness)
+def draw_circle(screen,color,circle_center,radius,thickness):
+    pygame.draw.circle(screen,color,circle_center,radius,thickness)
 
 
 
@@ -40,16 +40,16 @@ def main():
         screen.fill(config.WHITE) # Use color from config
 
         circle_color = config.RED
-        cp_x, cp_y = 100, 100
+        position = [100, 100]
         circle_radius = 10
         
         key = pygame.key.get_pressed()
         if key [pygame.K_s]:
-            cp_x= 20
+            position[0] -= 5
         if key [pygame.K_d]:
-            cp_y -= 20
+            position[0] += 5
 
-        draw_circle(screen,circle_color,cp_x, cp_y,circle_radius,0)
+        draw_circle(screen,circle_color,position,circle_radius,0)
 
         pygame.display.flip()
 
