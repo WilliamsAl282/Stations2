@@ -11,6 +11,8 @@ def init_game():
     pygame.display.set_caption(config.TITLE)
     return screen
 
+
+
 def handle_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -18,55 +20,36 @@ def handle_events():
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 return False
+
+            
     return True
+
+
+def draw_circle(screen,color,cp_x, cp_y,radius,thickness):
+    pygame.draw.circle(screen,color,cp_x, cp_y,radius,thickness)
+
+
 
 def main():
     screen = init_game()
     running = True
     clock = pygame.time.Clock() # Initialize the clock her
-    shapes_list = []
+    
     while running:
         running = handle_events()
         screen.fill(config.WHITE) # Use color from config
-        shape_type = random.randrange(3)
 
-        if shape_type == 0:
+        circle_color = config.RED
+        cp_x, cp_y = 100, 100
+        circle_radius = 10
+        
+        key = pygame.key.get_pressed()
+        if key [pygame.K_s]:
+            cp_x= 20
+        if key [pygame.K_d]:
+            cp_y -= 20
 
-            new_shape = {
-                'type': 'circle',
-                'color': (random.randrange(255),random.randrange(255),random.randrange(255)),
-                'position': (random.randrange(config.WINDOW_WIDTH),random.randrange(config.WINDOW_HEIGHT)),
-                'radius': 50
-            }
-
-        elif shape_type == 1:
-            new_shape = {
-               'type': 'rectangle',
-                'color': (random.randrange(255),random.randrange(255),random.randrange(255)),
-                'position': (random.randrange(config.WINDOW_WIDTH-100),random.randrange(config.WINDOW_HEIGHT-100)),
-                'width': 100,
-                'height': 100 
-            }
-
-        elif shape_type == 2:
-            new_shape = {
-               'type': 'line',
-                'color': (random.randrange(255),random.randrange(255),random.randrange(255)),
-                'start_pos': (random.randrange(config.WINDOW_WIDTH-100),random.randrange(config.WINDOW_HEIGHT-100)),
-                'end_pos': (random.randrange(config.WINDOW_WIDTH-100),random.randrange(config.WINDOW_HEIGHT-100)),
-                'width': 10
-            }
-
-        shapes_list.append(new_shape)
-
-
-        for shape in shapes_list:
-            if shape['type'] == 'circle':
-                shapes.draw_circle(screen,shape)
-            elif shape['type'] == 'rectangle':
-                shapes.draw_rect(screen,shape)
-            elif shape['type'] == 'line':
-                shapes.draw_line(screen,shape)
+        draw_circle(screen,circle_color,cp_x, cp_y,circle_radius,0)
 
         pygame.display.flip()
 
